@@ -3,11 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tetris</title>
-    <script src="mainjs.js"></script>
+    <title>Adivina el número</title>
+    <script src="main.js"></script>
 </head>
 <body>
-    <canvas id="tetrisCanvas" width="300" height="600"></canvas>
-    
+    <h1>Adivina el número</h1>
+    <p>Estoy pensando en un número entre 1 y 100. ¿Puedes adivinar cuál es?</p>
+    <input type="number" id="guessInput" min="1" max="100">
+    <button onclick="checkGuess()">Adivinar</button>
+    <p id="message"></p>
+
+    <script>
+        // Variables del juego
+        const minNumber = 1;
+        const maxNumber = 100;
+        const targetNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+        let attempts = 0;
+
+        // Función para verificar el intento del usuario
+        function checkGuess() {
+            const guessInput = document.getElementById('guessInput');
+            const message = document.getElementById('message');
+            const userGuess = parseInt(guessInput.value);
+
+            if (isNaN(userGuess) || userGuess < minNumber || userGuess > maxNumber) {
+                message.textContent = 'Por favor, ingresa un número válido entre 1 y 100.';
+            } else {
+                attempts++;
+                if (userGuess === targetNumber) {
+                    message.textContent = `¡Felicitaciones! Adivinaste el número en ${attempts} intentos.`;
+                } else if (userGuess < targetNumber) {
+                    message.textContent = 'El número es mayor. Intenta de nuevo.';
+                } else {
+                    message.textContent = 'El número es menor. Intenta de nuevo.';
+                }
+            }
+
+            guessInput.value = '';
+        }
+    </script>
 </body>
 </html>

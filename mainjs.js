@@ -23,7 +23,7 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// Llamamos a la función de inicialización cuando se carga la página
+// función de inicialización cuando se carga la página
 window.addEventListener('load', () => {
     initializeGame();
     gameLoop();
