@@ -1,5 +1,15 @@
 const opciones = ['piedra', 'papel', 'tijeras'];
 
+do {
+    jugar();
+
+    const continuar = prompt("¿Deseas jugar otra vez? (Sí/No)").toLowerCase();
+    if (continuar !== 'si') {
+        alert("¡Gracias por jugar! Hasta luego.");
+        break;
+    }
+} while (true);
+
 function jugar() {
     const eleccionUsuario = prompt("Elige una opción: piedra, papel o tijeras").toLowerCase();
     
